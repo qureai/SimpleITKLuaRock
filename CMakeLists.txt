@@ -25,6 +25,13 @@ set( EP_SOURCE_DIR ${CMAKE_BINARY_DIR}/${proj} )
 set( EP_BINARY_DIR ${CMAKE_BINARY_DIR}/${proj}-build )
 set( EP_INSTALL_DIR ${CMAKE_BINARY_DIR}/${proj}-install )
 
+# Check if one of Lua and Torch is installed
+find_package(LUA)
+find_package(Torch)
+if (NOT (LUA_FOUND OR Torch_FOUND))
+  message(FATAL_ERROR "Neither Lua nor torch found. Please check your paths.")
+endif()
+
 
 # A separate project is used to download SimpleITK, so that the SuperBuild
 # subdirectory can be use for SimpleITK's SuperBuild to build the
@@ -41,6 +48,7 @@ ExternalProject_add( ${proj}-download
 
 # The actual SimpleITK Superbuild project that build all the tools
 # needed (GTest, PCRE, Swig, Lua & GTest) and then SimpleITK itself.
+# As for wrap_torch and wrap_lua options, defaults should take care of it
 ExternalProject_add( ${proj}
   ${${proj}_EP_ARGS}
   SOURCE_DIR ${EP_SOURCE_DIR}/SuperBuild
@@ -56,7 +64,6 @@ ExternalProject_add( ${proj}
     -DWRAP_TCL:BOOL=OFF
     -DWRAP_JAVA:BOOL=OFF
     -DWRAP_RUBY:BOOL=OFF
-    -DWRAP_LUA:BOOL=ON
     -DWRAP_CSHARP:BOOL=OFF
     -DWRAP_R:BOOL=OFF
     -DSimpleITK_BUILD_STRIP:BOOL=ON
