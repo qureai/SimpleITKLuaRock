@@ -18,7 +18,7 @@ set(LUA_SIMPLE_ITK_VERSION "0.10-0")
 include(ExternalProject)
 
 
-set( SimpleITK_REPOSITORY ssh://git@bitbucket.org/aiinnovation/simpleitkluarock.git )
+set( SimpleITK_REPOSITORY ssh://git@bitbucket.org/aiinnovation/simpleitk.git )
 set(SimpleITK_GIT_TAG v0.10rc3)
 
 set( EP_SOURCE_DIR ${CMAKE_BINARY_DIR}/${proj} )
