@@ -3,8 +3,8 @@
 package = 'simpleitk'
 version = '0.10-0'
 source  = {
-    url    = 'git://bitbucket.org/aiinnovation/simpleitkluarock',
-    dir = 'SimpleITKLuaRock-0.10',
+    url    = 'git://github.com/qureai/SimpleITKLuaRock.git',
+    branch = 'qure'
 }
 description = {
     summary  = "A Lua binding to SimpleITK.",

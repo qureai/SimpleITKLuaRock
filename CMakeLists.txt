@@ -19,15 +19,15 @@ include(ExternalProject)
 
 
 set( SimpleITK_REPOSITORY ssh://git@bitbucket.org/aiinnovation/simpleitkluarock.git )
-set(SimpleITK_GIT_TAG v0.10.0)
+set(SimpleITK_GIT_TAG v0.10rc3)
 
 set( EP_SOURCE_DIR ${CMAKE_BINARY_DIR}/${proj} )
 set( EP_BINARY_DIR ${CMAKE_BINARY_DIR}/${proj}-build )
 set( EP_INSTALL_DIR ${CMAKE_BINARY_DIR}/${proj}-install )
 
 # Check if one of Lua and Torch is installed
-find_package(LUA)
-find_package(Torch)
+find_package(LUA QUIET)
+find_package(Torch QUIET)
 if (NOT (LUA_FOUND OR Torch_FOUND))
   message(FATAL_ERROR "Neither Lua nor torch found. Please check your paths.")
 endif()
@@ -39,7 +39,7 @@ endif()
 ExternalProject_add( ${proj}-download
   SOURCE_DIR ${EP_SOURCE_DIR}
   GIT_REPOSITORY ${SimpleITK_REPOSITORY}
-  GIT_TAG ${SimpleITK_GIT_TAG}
+  #GIT_TAG ${SimpleITK_GIT_TAG}
   CONFIGURE_COMMAND ""
   INSTALL_COMMAND ""
   BUILD_COMMAND ""
