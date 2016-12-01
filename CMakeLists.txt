@@ -19,7 +19,7 @@ include(ExternalProject)
 
 
 set( SimpleITK_REPOSITORY ssh://git@bitbucket.org/aiinnovation/simpleitk.git )
-set(SimpleITK_GIT_TAG v0.10rc3)
+set(SimpleITK_GIT_TAG torch)
 
 set( EP_SOURCE_DIR ${CMAKE_BINARY_DIR}/${proj} )
 set( EP_BINARY_DIR ${CMAKE_BINARY_DIR}/${proj}-build )
@@ -39,10 +39,11 @@ endif()
 ExternalProject_add( ${proj}-download
   SOURCE_DIR ${EP_SOURCE_DIR}
   GIT_REPOSITORY ${SimpleITK_REPOSITORY}
-  #GIT_TAG ${SimpleITK_GIT_TAG}
+  GIT_TAG ${SimpleITK_GIT_TAG}
   CONFIGURE_COMMAND ""
   INSTALL_COMMAND ""
   BUILD_COMMAND ""
+  UPDATE_COMMAND ""
   )
 
 
